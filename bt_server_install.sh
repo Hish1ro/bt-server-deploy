@@ -13,9 +13,9 @@ docker pull linuxserver/qbittorrent
 docker pull nginx:latest
 
 # 创建docker容器需要的文件夹
-mkdir -p /root/downloads/
-mkdir -p /root/docker/qbittorrent/config/
-mkdir -p /root/docker/nginx/
+mkdir /root/downloads
+mkdir -p /root/docker/qbittorrent/config
+mkdir /root/docker/nginx
 
 # 开放防火墙端口
 # firewall-cmd --zone=pulic --add-port=8999/tcp --permanent
