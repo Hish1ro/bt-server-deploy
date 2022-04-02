@@ -8,19 +8,21 @@ curl -sSL https://get.docker.com/ | sh
 # 启动docker
 systemctl start docker
 
-# docker容器拉取qbittorrent
+# docker拉取qbittorrent和nginx镜像
 docker pull linuxserver/qbittorrent
+docker pull nginx:latest
 
 # 创建docker容器需要的文件夹
 mkdir -p /root/downloads/
 mkdir -p /root/docker/qbittorrent/config/
+mkdir -p /root/docker/nginx/
 
 # 开放防火墙端口
-firewall-cmd --zone=pulic --add-port=8999/tcp --permanent
-firewall-cmd --zone=pulic --add-port=8999/udp --permanent
-firewall-cmd --zone=pulic --add-port=9090/tcp --permanent
-firewall-cmd --zone=pulic --add-port=18081/tcp --permanent
-firewall-cmd --reload
+# firewall-cmd --zone=pulic --add-port=8999/tcp --permanent
+# firewall-cmd --zone=pulic --add-port=8999/udp --permanent
+# firewall-cmd --zone=pulic --add-port=9090/tcp --permanent
+# firewall-cmd --zone=pulic --add-port=18081/tcp --permanent
+# firewall-cmd --reload
 
 # 创建并启动qbittorrent的docker容器
 # 容器命名为qbittorrent，开放9090端口作为Web UI访问端口，注意防火墙设置
@@ -46,6 +48,9 @@ docker run \
 # User: admin
 # Password: adminadmin
 
+# 从github仓库下载nginx的conf配置文件
+curl -sSL -o /root/docker/nginx/nginx.conf https://raw.githubusercontent.com/Hish1ro/vps/main/nginx.conf
+curl -sSL -o /root/docker/nginx/nginx-file-server.conf https://raw.githubusercontent.com/Hish1ro/vps/main/nginx-file-server.conf
 
 # 使用nginx作为文件服务器
 # 将宿主机目录/root/downloads挂载到容器的/data目录，从而将其暴露出去
