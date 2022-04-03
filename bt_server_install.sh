@@ -1,12 +1,16 @@
 #!/bin/bash
 
-yum update
+yum install -y bash-completion
 
 # 从官网下载docker安装脚本
 curl -sSL https://get.docker.com/ | sh
 
 # 启动docker
 systemctl start docker
+
+# docker命令自动补全
+source /usr/share/bash-completion/bash_completion
+source /usr/share/bash-completion/completions/docker
 
 # docker拉取qbittorrent和nginx镜像
 docker pull linuxserver/qbittorrent
