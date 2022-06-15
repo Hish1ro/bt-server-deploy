@@ -1,4 +1,4 @@
-# bt server install
+# vps bt server automatic installation
 
 Shell scripts for automatically deploy the docker containers of qbittorrent and nginx(as fileserver) on vps.
 
